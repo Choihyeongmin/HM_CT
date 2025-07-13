@@ -1,18 +1,16 @@
+//문제3. 두 수를 뽑아서 더하기 / 프로그래머스 68644
+#include<iostream>
+#include<set>
 #include<vector>
-    #include<algorithm>
 
 using namespace std;
 
 vector<int> solution(vector<int> numbers){
-    vector<int> out;
-    for(auto i=numbers.begin(); i != numbers.end(); i++){
-        for(auto j=i+1; j!=numbers.end();j++){
-            out.push_back(*i+*j);
-        }
+    set<int> set;
+    for(int i=0;i<numbers.size()-1;i++){
+        for(int k=i+1;k<numbers.size();k++)
+        set.insert(numbers[i]+numbers[k]);
     }
-    out.erase(unique(out.begin(), out.end()),out.end());
-    sort(out.begin(), out.end());
-    return out;
+    vector<int> sol(set.begin(), set.end());
+    return sol;
 }
-//iterator는 주소를 가지고 있어 '*'로 접근해야됨
-//index로 접근하려면 int i=0;i<vec.size();i++
